@@ -36,7 +36,7 @@ app.get('/igihe', (req, res) => {
                 });
             }
         });
-        while (igiheResults === undefined) {}
+        while (igiheResults.length == 0) {}
         igiheResults.pop();
         return res.status(200).send(igiheResults);
     }
