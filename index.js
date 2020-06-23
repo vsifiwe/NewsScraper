@@ -11,12 +11,11 @@ app.listen(PORT);
 console.log('app running on port', PORT);
 
 app.get('/igihe', (req, res) => {
-    let igiheResults = [];
-
     function getIgiheArticles() {
         request('https://igihe.com/', (error, response, html) => {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
+                let igiheResults = [];
                 $(
                     '.col-sm-5 .article-wrap .row .col-md-12 .homenews .row'
                 ).each((i, el) => {
@@ -34,11 +33,10 @@ app.get('/igihe', (req, res) => {
 
                     igiheResults.push(article);
                 });
+                igiheResults.pop();
+                return res.status(200).send(igiheResults);
             }
         });
-        while (igiheResults.length == 0) {}
-        igiheResults.pop();
-        return res.status(200).send(igiheResults);
     }
 
     getIgiheArticles();
