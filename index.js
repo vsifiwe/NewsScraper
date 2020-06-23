@@ -25,10 +25,11 @@ app.get('/igihe', (req, res) => {
                         title: '',
                         picture: '',
                     };
-                    article.link = 'igihe.com/' + $(el).find('a').attr('href');
+                    article.link =
+                        'https://igihe.com/' + $(el).find('a').attr('href');
                     article.title = $(el).find('span').text();
                     article.picture =
-                        'igihe.com/' +
+                        'https://igihe.com/' +
                         $(el).find('.col-xs-3 div a img').attr('data-original');
 
                     igiheResults.push(article);
