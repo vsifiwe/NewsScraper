@@ -39,7 +39,7 @@ app.get('/igihe', (req, res) => {
         setTimeout(function () {
             igiheResults.pop();
             return res.status(200).send(igiheResults);
-        }, 3000);
+        }, 5000);
     }
 
     getIgiheArticles();
