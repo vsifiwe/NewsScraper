@@ -34,7 +34,8 @@ app.get('/igihe', (req, res) => {
                     igiheResults.push(article);
                 });
                 igiheResults.pop();
-                return res.status(200).send(igiheResults);
+                let results = JSON.stringify(igiheResults);
+                return res.status(200).send(results);
             }
         });
     }
