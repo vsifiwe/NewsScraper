@@ -36,10 +36,9 @@ app.get('/igihe', (req, res) => {
                 });
             }
         });
-        setTimeout(function () {
-            igiheResults.pop();
-            return res.status(200).send(igiheResults);
-        }, 5000);
+        while (igiheResults === undefined) {}
+        igiheResults.pop();
+        return res.status(200).send(igiheResults);
     }
 
     getIgiheArticles();
