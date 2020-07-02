@@ -41,30 +41,29 @@ app.get('/igihe', (req, res) => {
     });
 });
 
-app.get('/agakiza', async (req, res) => {
+app.get('/agakiza', (req, res) => {
     request('https://bibiliya.com/songs/guhimbaza', (error, response, html) => {
         if (!error && response.statusCode == 200) {
             const $ = cheerio.load(html);
             let link = '';
             let data = [];
             let number = 0;
-            
-            $('.home-ttle12 a').each((i, el) => {
+
+            $('.home-ttle12 a').each(async (i, el) => {
                 let song = {
-                    id = 0,
-                    name = '',
-                    lyric = ''
-                }
+                    id: 0,
+                    name: '',
+                    lyric: '',
+                };
                 link = $(el).attr('href');
                 let songLyric = await returnSongLyricFromLink(link);
-                song.id=number;
-                song.lyric=songLyric;
+                song.id = number;
+                song.lyric = songLyric;
                 data.push(song);
                 number++;
-
             });
             let results = JSON.stringify(data);
-            return res.status(200).send(results)
+            return res.status(200).send(results);
         }
     });
 
